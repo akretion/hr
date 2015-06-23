@@ -109,7 +109,8 @@ class HrPublicHolidays(models.Model):
         '''
         holidays_lines = self.get_holidays_list(
             selected_date.year, employee_id=employee_id)
-        for line in holidays_lines:
-            if date.strftime(selected_date, "%Y-%m-%d") == line.date:
-                return True
+        if holidays_lines:
+            for line in holidays_lines:
+                if date.strftime(selected_date, "%Y-%m-%d") == line.date:
+                    return True
         return False
